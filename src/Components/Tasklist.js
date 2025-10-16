@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import AddTaskForm from "./AddTaskForm";
 function TaskList(){
     const [task,setTask]= useState([
     {
@@ -16,9 +16,22 @@ function TaskList(){
     }
 ]);;
 
+const handleAddTask= (taskName)=> {
+   const newTask = {
+    id:Date.now(),
+    name:taskName
+   }
+   setTask ([...task,newTask])
+
+}
+
+
+
 return(
     <div className="p-6">
-    <h1 className=" mb-2 text-2xl font-bold text-blue-600"> 📝 Task List</h1>    
+    <h1 className=" mb-2 text-2xl font-bold text-blue-600"> 📝 Task List</h1>   
+
+    <AddTaskForm onAddTask={handleAddTask}/> 
     <ul className="space-y-2">
     {task.map((task)=> (
     <li key={task.id} className=" p-4 bg-gray-200 shadow-md hover:bg-blue-200 transition"> 
